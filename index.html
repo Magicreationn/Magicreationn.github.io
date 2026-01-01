@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Creation - AI Portfolio</title>
+    <style>
+        :root {
+            --primary: #b0fb5d; /* ירוק ניאון */
+            --bg: #050505;
+            --card: #111;
+            --text: #fff;
+        }
+        body { margin: 0; font-family: sans-serif; background: var(--bg); color: var(--text); text-align: center; }
+        
+        /* עיצוב ראשי */
+        header { padding: 100px 20px; background: radial-gradient(circle, #1a2a1a 0%, #050505 70%); }
+        h1 { font-size: 4rem; margin: 0; text-transform: uppercase; letter-spacing: 3px; }
+        h1 span { color: var(--primary); }
+        p.sub { font-size: 1.5rem; color: #888; margin-top: 10px; }
+        
+        .btn { display: inline-block; margin-top: 30px; padding: 12px 30px; border: 1px solid var(--primary); color: var(--primary); text-decoration: none; border-radius: 50px; transition: 0.3s; }
+        .btn:hover { background: var(--primary); color: #000; box-shadow: 0 0 20px var(--primary); }
+
+        /* גלריה */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 50px 20px; max-width: 1200px; margin: 0 auto; }
+        .card { background: var(--card); border-radius: 15px; overflow: hidden; border: 1px solid #222; }
+        .fake-video { height: 200px; background: #222; display: flex; align-items: center; justify-content: center; color: #555; }
+        .info { padding: 20px; text-align: right; }
+        .info h3 { margin: 0; color: #fff; }
+        .info p { color: #999; font-size: 0.9rem; }
+
+        footer { padding: 50px; border-top: 1px solid #222; color: #555; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Magic <span>Creation</span></h1>
+        <p class="sub">הפקות וידאו וקריאייטיב בבינה מלאכותית</p>
+        <a href="mailto:contact@example.com" class="btn">צור קשר להפקה</a>
+    </header>
+
+    <div class="gallery">
+        <div class="card">
+            <div class="fake-video">וידאו: פרסומת רכב</div>
+            <div class="info">
+                <h3>פרסומת לרכב חשמלי</h3>
+                <p>נוצר באמצעות Runway Gen-3</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="fake-video">וידאו: משקה אנרגיה</div>
+            <div class="info">
+                <h3>קמפיין משקאות קיץ</h3>
+                <p>נוצר באמצעות Kling AI</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="fake-video">תמונה: מוצרי טיפוח</div>
+            <div class="info">
+                <h3>צילום מוצר קוסמטי</h3>
+                <p>נוצר באמצעות Midjourney v6</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2025 Magic Creation. כל הזכויות שמורות.
+    </footer>
+
+</body>
+</html>
