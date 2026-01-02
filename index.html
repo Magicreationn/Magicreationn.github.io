@@ -11,13 +11,14 @@
 
     <style>
         :root {
-            /* תיקון צבעים: זהב עמוק ונחושתי יותר כמו בלוגו */
-            --gold: #FFD700;
+            /* פלטת זהב יוקרתית ועמוקה - תואמת ללוגו */
+            --gold: #E5B80B; 
             --gold-deep: #B8860B;
-            /* גרדיאנט שמותאם בדיוק ללוגו שלך - מזהב בהיר לכתום עמוק */
-            --gold-gradient: linear-gradient(135deg, #FFE5B4 0%, #D4AF37 25%, #AA771C 50%, #8B5A00 100%);
-            --bg: #050505;
-            --card-bg: rgba(20, 20, 20, 0.6);
+            /* גרדיאנט עשיר לטקסט */
+            --gold-gradient: linear-gradient(135deg, #FCEabb 0%, #F8B500 50%, #E5B80B 100%);
+            /* רקע כהה ועמוק יותר */
+            --bg: #020202;
+            --card-bg: rgba(25, 25, 25, 0.7);
             --text: #f4f4f4;
             --accent-text: #b0b0b0;
         }
@@ -28,7 +29,8 @@
             margin: 0; 
             font-family: 'Heebo', sans-serif; 
             background-color: var(--bg);
-            background-image: radial-gradient(circle at 50% 0%, #2a2000 0%, #050505 50%);
+            /* רקע עם עומק */
+            background-image: radial-gradient(circle at 50% 0%, #221a00 0%, #020202 60%);
             color: var(--text); 
             line-height: 1.6; 
             overflow-x: hidden; 
@@ -42,50 +44,60 @@
         .delay-1 { animation-delay: 0.3s; }
         .delay-2 { animation-delay: 0.6s; }
 
-        /* === כותרת ראשית === */
+        /* === כותרת ראשית HERO === */
         header { 
             text-align: center; 
-            padding: 100px 20px 60px; 
+            padding: 80px 20px 60px; 
             position: relative;
+            /* יצירת "תיבה" כהה שמתמזגת לרקע */
+            background: linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.8) 60%, transparent 100%);
         }
         
-        /* תיקון לוגו: הסרת רקע שחור והתמזגות */
+        .logo-container {
+            display: inline-block;
+            /* מסגרת עדינה וזוהר זהוב מסביב ללוגו */
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(229, 184, 11, 0.15);
+            background: #000; /* רקע שחור מלא ללוגו */
+            margin-bottom: 30px;
+        }
+
         .logo-img { 
-            max-width: 280px; /* הגדלתי קצת */
-            margin-bottom: 20px; 
-            /* הטריק להעלמת השחור ושמירה על ההשתקפות */
-            mix-blend-mode: screen; 
-            filter: contrast(1.1) brightness(1.1); /* הדגשת הזהב */
+            max-width: 220px; 
+            display: block;
+            /* הדגשת הזהב בלוגו */
+            filter: contrast(1.1) brightness(1.1);
         }
 
         h1 { 
             font-size: 5rem; 
             margin: 0; 
             text-transform: uppercase; 
-            letter-spacing: 5px; 
+            letter-spacing: 6px; 
             line-height: 1; 
             font-weight: 900;
             
-            /* צבע טקסט מותאם ללוגו */
             background: var(--gold-gradient);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: textShine 4s linear infinite alternate;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            /* צל טקסט עדין */
+            text-shadow: 0 0 20px rgba(229, 184, 11, 0.3);
         }
 
         p.intro { 
             font-size: 1.5rem; 
             color: #ccc; 
             max-width: 700px; 
-            margin: 30px auto; 
+            margin: 35px auto; 
             font-weight: 300;
             border-top: 1px solid #333;
-            padding-top: 30px;
+            padding-top: 35px;
         }
 
-        .highlight { color: var(--gold-deep); font-weight: 700; text-shadow: 0 0 10px rgba(184, 134, 11, 0.4); }
+        .highlight { color: var(--gold); font-weight: 700; text-shadow: 0 0 10px rgba(229, 184, 11, 0.3); }
 
         /* === אזור Why Us === */
         .why-us-section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
@@ -103,15 +115,15 @@
             overflow: hidden;
         }
         .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 3px; background: var(--gold-deep); transition: 0.4s; }
-        .feature-card:hover { background: #151515; transform: translateY(-10px); border-color: var(--gold-deep); }
+        .feature-card:hover { background: #181818; transform: translateY(-10px); border-color: var(--gold-deep); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); }
         .feature-card:hover::before { width: 100%; }
         
-        .feature-icon { font-size: 2rem; margin-bottom: 20px; display: block; filter: grayscale(1); transition: 0.3s; }
-        .feature-card:hover .feature-icon { filter: grayscale(0); text-shadow: 0 0 10px var(--gold-deep); }
+        .feature-icon { font-size: 2rem; margin-bottom: 20px; display: block; filter: grayscale(1) brightness(0.8); transition: 0.3s; }
+        .feature-card:hover .feature-icon { filter: grayscale(0) brightness(1); text-shadow: 0 0 15px var(--gold-deep); }
         .feature-title { font-size: 1.3rem; color: #fff; margin: 0 0 15px 0; font-weight: 700; }
         .feature-desc { color: var(--accent-text); font-size: 0.95rem; font-weight: 300; }
 
-        /* === אזור הפרויקטים - עיצוב מגזין === */
+        /* === אזור הפרויקטים === */
         .projects-container { max-width: 1300px; margin: 0 auto; padding: 60px 20px; }
 
         .project-section {
@@ -119,6 +131,7 @@
             border: 1px solid #222;
             padding: 50px;
             border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
         }
 
         .project-header { margin-bottom: 40px; border-right: 3px solid var(--gold-deep); padding-right: 30px; }
@@ -126,10 +139,11 @@
         .project-desc { font-size: 1.2rem; color: #bbb; margin-bottom: 20px; max-width: 800px; font-weight: 300; }
         .project-stats { display: inline-block; color: var(--gold); padding: 8px 15px; border: 1px solid var(--gold-deep); font-weight: bold; letter-spacing: 1px; }
 
-        /* גריד חכם - Mosaic */
+        /* === גריד סימטרי חדש === */
         .project-gallery {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 עמודות */
+            /* שתי עמודות רחבות בצדדים, אחת צרה באמצע */
+            grid-template-columns: 1.2fr 1fr 1.2fr;
             grid-auto-rows: 300px; /* גובה בסיס */
             gap: 20px;
         }
@@ -141,25 +155,37 @@
             position: relative;
         }
 
-        /* התאמה אישית לגדלים של התמונות */
+        /* מחלקה לתמונות גבוהות בצדדים */
         .img-box.tall {
-            grid-row: span 2; /* תופס גובה כפול */
+            grid-row: span 2; /* גובה כפול */
             height: 100%;
+        }
+
+        /* התמונה האמצעית התחתונה */
+        .img-box.center-bottom {
+            grid-column: 2;
+            grid-row: 2;
+        }
+        
+        /* התמונה האמצעית העליונה */
+        .img-box.center-top {
+             grid-column: 2;
+             grid-row: 1;
         }
 
         .img-box img { 
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
-            /* הפתרון לחיתוך הפנים: */
+            /* מבטיח שהפנים לא ייחתכו */
             object-position: top center; 
-            transition: transform 0.8s ease; 
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
             opacity: 0.9;
         }
 
-        .img-box:hover img { transform: scale(1.03); opacity: 1; }
+        .img-box:hover img { transform: scale(1.04); opacity: 1; }
 
-        /* === כפתור === */
+        /* === כפתור ופוטר === */
         .contact-section { text-align: center; padding: 120px 20px; background: #080808; border-top: 1px solid #111; }
         .btn { 
             display: inline-block; padding: 20px 70px; 
@@ -167,22 +193,26 @@
             color: #000; text-decoration: none; font-weight: 900; 
             font-size: 1.3rem; transition: 0.5s; letter-spacing: 2px; text-transform: uppercase;
         }
-        .btn:hover { box-shadow: 0 0 50px rgba(184, 134, 11, 0.4); transform: scale(1.02); color: #000; }
-        footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; background: #000; }
+        .btn:hover { box-shadow: 0 0 50px rgba(229, 184, 11, 0.4); transform: scale(1.02); color: #000; }
+        footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; background: #000; letter-spacing: 1px; }
 
         /* === התאמה למובייל === */
         @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
+            h1 { font-size: 3rem; letter-spacing: 3px; }
+            /* במובייל חוזרים לעמודה אחת */
             .project-gallery { grid-template-columns: 1fr; grid-auto-rows: 350px; }
-            .img-box.tall { grid-row: span 1; } /* במובייל מבטלים את הגובה הכפול */
+            .img-box.tall, .img-box.center-bottom, .img-box.center-top { grid-row: span 1; grid-column: auto; }
             .project-header { border-right: none; border-top: 3px solid var(--gold-deep); padding-right: 0; padding-top: 20px; }
+            header { padding-top: 60px; }
         }
     </style>
 </head>
 <body>
 
     <header class="fade-in">
-        <img src="ChatGPT Image Dec 1, 2025, 12_52_30 PM.png" alt="Magic Creation" class="logo-img">
+        <div class="logo-container">
+             <img src="ChatGPT Image Dec 1, 2025, 12_52_30 PM.png" alt="Magic Creation" class="logo-img">
+        </div>
         
         <h1 class="fade-in delay-1">Magic Creation</h1>
         <p class="intro fade-in delay-2">
@@ -236,27 +266,27 @@
                 <h2 class="project-title">Luxury Jewelry Campaign</h2>
                 <p class="project-desc">
                     הפקת אופנה יוקרתית שנוצרה כולה ב-AI עבור מותג תכשיטים.
-                    במקום ימי צילום יקרים, יצרנו דוגמנית ריאליסטית המותאמת בדיוק לערכי המותג, 
-                    והלבשנו עליה את המוצר בסביבה ים-תיכונית יוקרתית.
+                    יצרנו דוגמנית ריאליסטית המותאמת לערכי המותג והלבשנו עליה את המוצר בסביבה ים-תיכונית.
                 </p>
                 <div class="project-stats">💰 חיסכון: 15,000₪ | ⏱ זמן עבודה: 48 שעות</div>
             </div>
             
             <div class="project-gallery">
+                
                 <div class="img-box tall">
-                    <img src="A_highend_fashion_2k_202601020054.jpeg" alt="דוגמנית AI">
+                    <img src="A_cinematic_fashion_2k_202601020054.jpeg" alt="דוגמנית צד שמאל">
                 </div>
                 
-                <div class="img-box">
+                <div class="img-box center-top">
                     <img src="Image_202601020030.jpeg" alt="תקריב שרשרת">
                 </div>
 
-                <div class="img-box">
+                <div class="img-box center-bottom">
                     <img src="A_fashion_editorial_2k_202601020055.jpeg" alt="אווירה">
                 </div>
                 
-                <div class="img-box">
-                    <img src="A_cinematic_fashion_2k_202601020054.jpeg" alt="אווירה">
+                <div class="img-box tall">
+                    <img src="A_highend_fashion_2k_202601020054.jpeg" alt="דוגמנית צד ימין">
                 </div>
             </div>
         </div>
