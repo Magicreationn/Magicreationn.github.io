@@ -8,65 +8,248 @@
         :root {
             --primary: #b0fb5d; /* ירוק ניאון */
             --bg: #050505;
-            --card: #111;
-            --text: #fff;
+            --card-bg: #111;
+            --text: #eee;
+            --accent-text: #ccc;
         }
-        body { margin: 0; font-family: sans-serif; background: var(--bg); color: var(--text); text-align: center; }
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
         
-        /* עיצוב ראשי */
-        header { padding: 100px 20px; background: radial-gradient(circle, #1a2a1a 0%, #050505 70%); }
-        h1 { font-size: 4rem; margin: 0; text-transform: uppercase; letter-spacing: 3px; }
-        h1 span { color: var(--primary); }
-        p.sub { font-size: 1.5rem; color: #888; margin-top: 10px; }
+        /* === כותרת ראשית HERO === */
+        header { 
+            text-align: center; 
+            padding: 100px 20px 60px; 
+            background: radial-gradient(circle at top, #1a2a1a 0%, #050505 80%);
+            border-bottom: 1px solid #222;
+        }
         
-        .btn { display: inline-block; margin-top: 30px; padding: 12px 30px; border: 1px solid var(--primary); color: var(--primary); text-decoration: none; border-radius: 50px; transition: 0.3s; }
-        .btn:hover { background: var(--primary); color: #000; box-shadow: 0 0 20px var(--primary); }
+        .logo-img { max-width: 220px; margin-bottom: 25px; filter: drop-shadow(0 0 20px rgba(176, 251, 93, 0.15)); }
+        h1 { font-size: 3.5rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; line-height: 1.1; }
+        p.intro { font-size: 1.3rem; color: #aaa; max-width: 700px; margin: 25px auto; }
+        .highlight { color: var(--primary); font-weight: bold; }
 
-        /* גלריה */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 50px 20px; max-width: 1200px; margin: 0 auto; }
-        .card { background: var(--card); border-radius: 15px; overflow: hidden; border: 1px solid #222; }
-        .fake-video { height: 200px; background: #222; display: flex; align-items: center; justify-content: center; color: #555; }
-        .info { padding: 20px; text-align: right; }
-        .info h3 { margin: 0; color: #fff; }
-        .info p { color: #999; font-size: 0.9rem; }
+        /* === חלק חדש: למה אנחנו (Why Us) === */
+        .why-us-section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-        footer { padding: 50px; border-top: 1px solid #222; color: #555; }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+        
+        .section-title span { border-bottom: 3px solid var(--primary); padding-bottom: 10px; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #222;
+            padding: 30px;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon { font-size: 2rem; margin-bottom: 15px; display: block; }
+        .feature-title { font-size: 1.3rem; color: #fff; margin: 0 0 10px 0; font-weight: bold; }
+        .feature-desc { color: var(--accent-text); font-size: 0.95rem; margin: 0; }
+        .feature-list { list-style: none; padding: 0; margin-top: 10px; color: var(--accent-text); font-size: 0.9rem; }
+        .feature-list li::before { content: "• "; color: var(--primary); }
+
+        /* === אזור הפרויקטים === */
+        .projects-container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+        .project-section {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .project-header { margin-bottom: 30px; border-right: 4px solid var(--primary); padding-right: 20px; text-align: right; }
+        .project-title { font-size: 2rem; margin: 0 0 10px 0; color: #fff; }
+        .project-desc { font-size: 1.1rem; color: #ccc; margin-bottom: 15px; max-width: 800px; }
+        .project-stats { 
+            display: inline-block;
+            background: rgba(176, 251, 93, 0.1); 
+            color: var(--primary); 
+            padding: 5px 15px; 
+            border-radius: 5px; 
+            font-size: 0.9rem; 
+            font-weight: bold;
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .img-box {
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #000;
+        }
+
+        /* התאמה לתמונות וסרטונים */
+        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .img-box:hover img { transform: scale(1.05); }
+        
+        .img-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.12); /* זום להעלמת לוגואים */
+        }
+
+        /* === כפתור יצירת קשר === */
+        .contact-section { text-align: center; padding: 80px 20px; background: #0a0a0a; }
+        .btn { display: inline-block; padding: 18px 50px; background: var(--primary); color: #000; text-decoration: none; font-weight: bold; font-size: 1.3rem; border-radius: 50px; transition: 0.3s; box-shadow: 0 0 20px rgba(176, 251, 93, 0.2); }
+        .btn:hover { box-shadow: 0 0 40px var(--primary); transform: scale(1.05); background: #fff; }
+        
+        footer { text-align: center; padding: 40px; color: #444; font-size: 0.9rem; border-top: 1px solid #111; }
+
+        /* התאמה למובייל */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .project-header { border-right: none; border-bottom: 4px solid var(--primary); padding-right: 0; padding-bottom: 20px; }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Magic <span>Creation</span></h1>
-        <p class="sub">הפקות וידאו וקריאייטיב בבינה מלאכותית</p>
-        <a href="mailto:contact@example.com" class="btn">צור קשר להפקה</a>
+        <img src="ChatGPT Image Dec 1, 2025, 12_52_30 PM.png" alt="Magic Creation" class="logo-img">
+        
+        <h1>Magic Creation</h1>
+        <p class="intro">
+            הופכים רעיונות למציאות ויזואלית.
+            <br>
+            בלי ימי צילום. בלי לוגיסטיקה. <span class="highlight">נטו קריאייטיב.</span>
+        </p>
     </header>
 
-    <div class="gallery">
-        <div class="card">
-            <div class="fake-video">וידאו: פרסומת רכב</div>
-            <div class="info">
-                <h3>פרסומת לרכב חשמלי</h3>
-                <p>נוצר באמצעות Runway Gen-3</p>
+    <div class="why-us-section">
+        <div class="section-title"><span>Why Us</span></div>
+        
+        <div class="features-grid">
+            
+            <div class="feature-card">
+                <span class="feature-icon">🎥</span>
+                <h3 class="feature-title">וידיאו שמוכר – בלי הפקה מסובכת</h3>
+                <p class="feature-desc">אנחנו יוצרים סרטוני מוצר ופרסום שנראים כמו הפקת פרימיום, בלי ימי צילום, בלי צוות גדול ובלי תקציבים מיותרים.</p>
             </div>
-        </div>
-        <div class="card">
-            <div class="fake-video">וידאו: משקה אנרגיה</div>
-            <div class="info">
-                <h3>קמפיין משקאות קיץ</h3>
-                <p>נוצר באמצעות Kling AI</p>
+
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3 class="feature-title">מהיר, גמיש, חכם</h3>
+                <p class="feature-desc">צבע, תאורה, זווית או קצב – הכל ניתן לעריכה. התהליך מהיר והתוצאה מדויקת.</p>
             </div>
-        </div>
-        <div class="card">
-            <div class="fake-video">תמונה: מוצרי טיפוח</div>
-            <div class="info">
-                <h3>צילום מוצר קוסמטי</h3>
-                <p>נוצר באמצעות Midjourney v6</p>
+
+            <div class="feature-card">
+                <span class="feature-icon">📱</span>
+                <h3 class="feature-title">מותאם לרשתות שמביאות תוצאות</h3>
+                <p class="feature-desc">הסרטונים נבנים במיוחד לאינסטגרם, טיקטוק, רילס ומודעות - עם פתיחה שעוצרת גלילה וקצב שמייצר מעורבות.</p>
             </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🚀</span>
+                <h3 class="feature-title">יותר תשומת לב, יותר מכירות</h3>
+                <p class="feature-desc">וידיאו איכותי מגדיל:</p>
+                <ul class="feature-list">
+                    <li>צפיות וזמן מסך</li>
+                    <li>קליקים והמרות</li>
+                </ul>
+                <p class="feature-desc" style="margin-top:10px;">כי היום – וידיאו הוא הכלי החזק ביותר למכירה.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3 class="feature-title">מתאים לכל שלב של המותג</h3>
+                <p class="feature-desc">סטארטאפים, חנויות אונליין, מותגי פרימיום והשקות מוצר – אנחנו מתאימים את הווידיאו לצרכים ולתקציב שלך.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">✨</span>
+                <h3 class="feature-title">מיתוג אחיד ומקצועי</h3>
+                <p class="feature-desc">יוצרים שפה ויזואלית ברורה: לוק אחיד, תחושה יוקרתית ונראות שמבדילה אותך מהמתחרים.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🛠</span>
+                <h3 class="feature-title">לא צריך חומרי גלם</h3>
+                <p class="feature-desc">גם אם אין לך צילומים או וידיאו – אפשר להתחיל מתמונה אחת, הדמיה או רעיון בלבד.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">♻️</span>
+                <h3 class="feature-title">מקסימום ערך מכל סרטון</h3>
+                <p class="feature-desc">סרטון אחד יכול להפוך ל: ריל, סטורי, מודעה או פתיח לאתר. יותר תוכן, פחות מאמץ.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🤍</span>
+                <h3 class="feature-title">תהליך פשוט ונעים</h3>
+                <p class="feature-desc">אנחנו מטפלות בהכול – מהרעיון ועד התוצאה הסופית. את/ה מקבל/ת סרטון מוכן, מדויק ומוכן לפרסום.</p>
+            </div>
+
+             <div class="feature-card" style="grid-column: 1 / -1; border-color: var(--primary);">
+                <span class="feature-icon">🌍</span>
+                <h3 class="feature-title">חדשנות שמבדלת אותך</h3>
+                <p class="feature-desc">וידיאו AI איכותי גורם למותג להיראות מתקדם, חכם ועדכני – ולקהל לעצור ולהתעניין.</p>
+            </div>
+
         </div>
     </div>
 
+    <div class="projects-container">
+
+        <div class="project-section">
+            <div class="project-header">
+                <h2 class="project-title">קמפיין תכשיטים: הפקה ללא דוגמנית</h2>
+                <p class="project-desc">
+                    ללקוח היה מוצר פיזי (שרשרת), אך לא היה תקציב ליום צילום, דוגמנית, מאפרת ולוקיישן יוקרתי.
+                    באמצעות AI, יצרתי דוגמנית ריאליסטית והלבשתי עליה את התכשיט בסביבה יוקרתית.
+                </p>
+                <div class="project-stats">💰 חיסכון מוערך: 15,000₪ בעלויות הפקה</div>
+            </div>
+            
+            <div class="project-gallery">
+                <div class="img-box"><img src="Image_202601020030.jpeg" alt="תקריב שרשרת"></div>
+                <div class="img-box"><img src="A_highend_fashion_2k_202601020054.jpeg" alt="דוגמנית"></div>
+                <div class="img-box"><img src="A_fashion_editorial_2k_202601020055.jpeg" alt="אווירה"></div>
+                <div class="img-box"><img src="A_cinematic_fashion_2k_202601020054.jpeg" alt="אווירה"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="contact-section">
+        <h2>רוצים לחסוך בעלויות ההפקה הבאה?</h2>
+        <br>
+        <a href="mailto:contact@example.com" class="btn">בואו נדבר</a>
+    </div>
+
     <footer>
-        © 2025 Magic Creation. כל הזכויות שמורות.
+        © 2025 Magic Creation Portfolio
     </footer>
 
 </body>
