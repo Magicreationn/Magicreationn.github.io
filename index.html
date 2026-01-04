@@ -11,16 +11,16 @@
 
     <style>
         :root {
-            /* פלטת זהב יוקרתית ועמוקה - תואמת ללוגו */
-            --gold: #E5B80B; 
-            --gold-deep: #B8860B;
-            /* גרדיאנט עשיר לטקסט */
-            --gold-gradient: linear-gradient(135deg, #FCEabb 0%, #F8B500 50%, #E5B80B 100%);
-            /* רקע כהה ועמוק יותר */
-            --bg: #020202;
-            --card-bg: rgba(25, 25, 25, 0.7);
-            --text: #f4f4f4;
-            --accent-text: #b0b0b0;
+            /* פלטת צבעים יוקרתית - זהב, ברונזה, זית ובז' */
+            --gold-rich: #D4AF37;
+            --gold-gradient-text: linear-gradient(135deg, #FCEabb 0%, #F8B500 50%, #E5B80B 100%);
+            --header-bg-gradient: linear-gradient(to bottom, #4a3b2a 0%, #1a1a1a 100%); /* גרדיאנט ברונזה-פחם להדר */
+            --body-bg-light: #E8E0D5; /* רקע בז' חולי לתוכן */
+            --card-bg-light: #F4F1EB; /* רקע בהיר לכרטיסיות */
+            --text-dark: #3A3A3A;
+            --text-olive: #556B2F; /* צבע לכותרות בכרטיסיות */
+            --text-light: #f4f4f4;
+            --accent-gold-line: rgba(212, 175, 55, 0.5);
         }
 
         * { box-sizing: border-box; }
@@ -28,191 +28,177 @@
         body { 
             margin: 0; 
             font-family: 'Heebo', sans-serif; 
-            background-color: var(--bg);
-            /* רקע עם עומק */
-            background-image: radial-gradient(circle at 50% 0%, #221a00 0%, #020202 60%);
-            color: var(--text); 
+            background-color: var(--body-bg-light);
+            /* טקסטורה עדינה לרקע הבהיר */
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0JyBoZWlnaHQ9JzQnIHZpZXdCb3g9JzAgMCA0IDQnPjxwYXRoIGZpbGw9JyM5OTk5OTknIGZpbGwtb3BhY2l0eT0nMC4wNScgZD0nTTFhMSAwIDAgMCAwIDFhMSAwIDAgMCAwLTF6Jy8+PC9zdmc+');
+            color: var(--text-dark); 
             line-height: 1.6; 
             overflow-x: hidden; 
         }
 
         /* === אנימציות === */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes textShine { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
-
-        .fade-in { animation: fadeIn 1s ease-out forwards; opacity: 0; }
+        .fade-in { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
         .delay-1 { animation-delay: 0.3s; }
         .delay-2 { animation-delay: 0.6s; }
 
-        /* === כותרת ראשית HERO === */
+        /* === כותרת ראשית HERO (רקע כהה) === */
         header { 
             text-align: center; 
-            padding: 80px 20px 60px; 
+            padding: 60px 20px 100px; 
+            background: var(--header-bg-gradient);
+            color: var(--text-light);
             position: relative;
-            /* יצירת "תיבה" כהה שמתמזגת לרקע */
-            background: linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.8) 60%, transparent 100%);
+            /* אפקט חלקיקי זהב עדין ברקע */
+            background-image: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 60%), var(--header-bg-gradient);
         }
         
-        .logo-container {
-            display: inline-block;
-            /* מסגרת עדינה וזוהר זהוב מסביב ללוגו */
-            padding: 10px;
-            border-radius: 4px;
-            box-shadow: 0 0 30px rgba(229, 184, 11, 0.15);
-            background: #000; /* רקע שחור מלא ללוגו */
-            margin-bottom: 30px;
+        /* קו הפרדה דק מתחת להדר */
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 80%; max-width: 1200px;
+            height: 1px;
+            background: var(--accent-gold-line);
         }
 
         .logo-img { 
-            max-width: 220px; 
+            max-width: 180px; 
             display: block;
-            /* הדגשת הזהב בלוגו */
-            filter: contrast(1.1) brightness(1.1);
+            margin: 0 auto 20px;
+            /* הטמעת הלוגו - מעלים את הרקע השחור */
+            mix-blend-mode: screen; 
+            filter: contrast(1.2) brightness(1.1);
         }
 
         h1 { 
-            font-size: 5rem; 
+            font-size: 4.5rem; 
             margin: 0; 
             text-transform: uppercase; 
-            letter-spacing: 6px; 
-            line-height: 1; 
+            letter-spacing: 4px; 
+            line-height: 1.1; 
             font-weight: 900;
-            
-            background: var(--gold-gradient);
+            background: var(--gold-gradient-text);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: textShine 4s linear infinite alternate;
-            /* צל טקסט עדין */
-            text-shadow: 0 0 20px rgba(229, 184, 11, 0.3);
+            animation: textShine 5s linear infinite alternate;
+            text-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
         }
 
         p.intro { 
-            font-size: 1.5rem; 
-            color: #ccc; 
-            max-width: 700px; 
-            margin: 35px auto; 
+            font-size: 1.4rem; 
+            color: #e0e0e0; /* צבע בהיר יותר לטקסט על רקע כהה */
+            max-width: 750px; 
+            margin: 25px auto 0; 
             font-weight: 300;
-            border-top: 1px solid #333;
-            padding-top: 35px;
         }
 
-        .highlight { color: var(--gold); font-weight: 700; text-shadow: 0 0 10px rgba(229, 184, 11, 0.3); }
+        .highlight { color: var(--gold-rich); font-weight: 700; }
 
-        /* === אזור Why Us === */
-        .why-us-section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 70px; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
-        .section-title span { border-bottom: 2px solid var(--gold-deep); padding-bottom: 15px; }
-
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-
-        .feature-card {
-            background: var(--card-bg);
-            border: 1px solid #333;
-            padding: 40px 30px;
-            transition: 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 3px; background: var(--gold-deep); transition: 0.4s; }
-        .feature-card:hover { background: #181818; transform: translateY(-10px); border-color: var(--gold-deep); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); }
-        .feature-card:hover::before { width: 100%; }
-        
-        .feature-icon { font-size: 2rem; margin-bottom: 20px; display: block; filter: grayscale(1) brightness(0.8); transition: 0.3s; }
-        .feature-card:hover .feature-icon { filter: grayscale(0) brightness(1); text-shadow: 0 0 15px var(--gold-deep); }
-        .feature-title { font-size: 1.3rem; color: #fff; margin: 0 0 15px 0; font-weight: 700; }
-        .feature-desc { color: var(--accent-text); font-size: 0.95rem; font-weight: 300; }
-
-        /* === אזור הפרויקטים === */
-        .projects-container { max-width: 1300px; margin: 0 auto; padding: 60px 20px; }
-
-        .project-section {
-            background: linear-gradient(180deg, #111 0%, #080808 100%);
-            border: 1px solid #222;
-            padding: 50px;
-            border-radius: 4px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        /* === אזור התוכן הראשי (רקע בהיר) === */
+        main {
+            padding: 80px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
         }
 
-        .project-header { margin-bottom: 40px; border-right: 3px solid var(--gold-deep); padding-right: 30px; }
-        .project-title { font-size: 2.5rem; margin: 0 0 15px 0; color: #fff; font-weight: 700; }
-        .project-desc { font-size: 1.2rem; color: #bbb; margin-bottom: 20px; max-width: 800px; font-weight: 300; }
-        .project-stats { display: inline-block; color: var(--gold); padding: 8px 15px; border: 1px solid var(--gold-deep); font-weight: bold; letter-spacing: 1px; }
+        .section-title { 
+            text-align: center; 
+            font-size: 2.5rem; 
+            margin-bottom: 60px; 
+            color: var(--text-olive); /* כותרת בצבע זית כהה */
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-weight: 900;
+        }
 
-        /* === גריד סימטרי חדש === */
-        .project-gallery {
+        /* === גריד הכרטיסיות החדש === */
+        .collection-grid {
             display: grid;
-            /* שתי עמודות רחבות בצדדים, אחת צרה באמצע */
-            grid-template-columns: 1.2fr 1fr 1.2fr;
-            grid-auto-rows: 300px; /* גובה בסיס */
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
 
-        .img-box {
+        .collection-card {
+            background: var(--card-bg-light);
+            border-radius: 20px;
             overflow: hidden;
-            background: #000;
-            border: 1px solid #222;
-            position: relative;
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.1); /* צל רך */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* מחלקה לתמונות גבוהות בצדדים */
-        .img-box.tall {
-            grid-row: span 2; /* גובה כפול */
+        .collection-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2);
+        }
+
+        .card-img-box {
+            height: 320px;
+            overflow: hidden;
+        }
+
+        .card-img-box img {
+            width: 100%;
             height: 100%;
-        }
-
-        /* התמונה האמצעית התחתונה */
-        .img-box.center-bottom {
-            grid-column: 2;
-            grid-row: 2;
-        }
-        
-        /* התמונה האמצעית העליונה */
-        .img-box.center-top {
-             grid-column: 2;
-             grid-row: 1;
-        }
-
-        .img-box img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
+            object-fit: cover;
             /* מבטיח שהפנים לא ייחתכו */
             object-position: top center; 
-            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
-            opacity: 0.9;
+            transition: transform 0.8s ease;
         }
 
-        .img-box:hover img { transform: scale(1.04); opacity: 1; }
-
-        /* === כפתור ופוטר === */
-        .contact-section { text-align: center; padding: 120px 20px; background: #080808; border-top: 1px solid #111; }
-        .btn { 
-            display: inline-block; padding: 20px 70px; 
-            background: var(--gold-gradient); 
-            color: #000; text-decoration: none; font-weight: 900; 
-            font-size: 1.3rem; transition: 0.5s; letter-spacing: 2px; text-transform: uppercase;
+        .collection-card:hover .card-img-box img {
+            transform: scale(1.05);
         }
-        .btn:hover { box-shadow: 0 0 50px rgba(229, 184, 11, 0.4); transform: scale(1.02); color: #000; }
-        footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; background: #000; letter-spacing: 1px; }
+
+        .card-content {
+            padding: 25px;
+            text-align: center; /* מירכוז טקסט בכרטיסייה */
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--text-olive);
+            margin: 0 0 10px 0;
+            font-weight: 700;
+        }
+
+        .card-desc {
+            font-size: 1rem;
+            color: #666;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* === פוטר === */
+        footer { 
+            text-align: center; 
+            padding: 30px; 
+            color: rgba(255,255,255,0.6); 
+            font-size: 0.9rem; 
+            background: #1a1a1a; /* רקע כהה לפוטר */
+            letter-spacing: 1px;
+            border-top: 1px solid #333;
+        }
+
+        footer span { color: var(--gold-rich); }
 
         /* === התאמה למובייל === */
         @media (max-width: 768px) {
-            h1 { font-size: 3rem; letter-spacing: 3px; }
-            /* במובייל חוזרים לעמודה אחת */
-            .project-gallery { grid-template-columns: 1fr; grid-auto-rows: 350px; }
-            .img-box.tall, .img-box.center-bottom, .img-box.center-top { grid-row: span 1; grid-column: auto; }
-            .project-header { border-right: none; border-top: 3px solid var(--gold-deep); padding-right: 0; padding-top: 20px; }
-            header { padding-top: 60px; }
+            h1 { font-size: 3rem; letter-spacing: 2px; }
+            header { padding: 40px 20px 60px; }
+            .collection-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .card-img-box { height: 350px; }
         }
     </style>
 </head>
 <body>
 
     <header class="fade-in">
-        <div class="logo-container">
-             <img src="ChatGPT Image Dec 1, 2025, 12_52_30 PM.png" alt="Magic Creation" class="logo-img">
-        </div>
+        <img src="ChatGPT Image Dec 1, 2025, 12_52_30 PM.png" alt="Magic Creation Logo" class="logo-img">
         
         <h1 class="fade-in delay-1">Magic Creation</h1>
         <p class="intro fade-in delay-2">
@@ -222,83 +208,56 @@
         </p>
     </header>
 
-    <div class="why-us-section fade-in delay-2">
-        <div class="section-title"><span>Why Us</span></div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <span class="feature-icon">🎥</span>
-                <h3 class="feature-title">High-End Production</h3>
-                <p class="feature-desc">וידאו ברמת מותג על, ללא הצוותים, לוקיישנים ותקציבי העתק. נטו תוצאה.</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">⚡</span>
-                <h3 class="feature-title">Ultimate Flexibility</h3>
-                <p class="feature-desc">שינוי תאורה, זווית וקומפוזיציה בזמן אמת. גמישות שלא קיימת בהפקה רגילה.</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">📱</span>
-                <h3 class="feature-title">Social First</h3>
-                <p class="feature-desc">תוכן שנבנה מראש לאינסטגרם וטיקטוק. פורמטים שעוצרים את הגלילה.</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🚀</span>
-                <h3 class="feature-title">Performance Driven</h3>
-                <p class="feature-desc">ויזואליה שנועדה למכור. אחוזי הקלקה גבוהים יותר וביצועים מוכחים.</p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">✨</span>
-                <h3 class="feature-title">Brand Consistency</h3>
-                <p class="feature-desc">שפה ויזואלית אחידה, יוקרתית ומבדלת שנשמרת לאורך כל הקמפיין.</p>
-            </div>
-            <div class="feature-card" style="border-color: var(--gold-deep);">
-                <span class="feature-icon">🌍</span>
-                <h3 class="feature-title">Future Intelligence</h3>
-                <p class="feature-desc">טכנולוגיית AI שנותנת למותג שלך מראה חדשני ומוביל שוק.</p>
-            </div>
-        </div>
-    </div>
+    <main>
+        <div class="section-title fade-in delay-2">Our Collection</div>
 
-    <div class="projects-container">
-        <div class="section-title"><span>Selected Works</span></div>
-
-        <div class="project-section">
-            <div class="project-header">
-                <h2 class="project-title">Luxury Jewelry Campaign</h2>
-                <p class="project-desc">
-                    הפקת אופנה יוקרתית שנוצרה כולה ב-AI עבור מותג תכשיטים.
-                    יצרנו דוגמנית ריאליסטית המותאמת לערכי המותג והלבשנו עליה את המוצר בסביבה ים-תיכונית.
-                </p>
-                <div class="project-stats">💰 חיסכון: 15,000₪ | ⏱ זמן עבודה: 48 שעות</div>
-            </div>
+        <div class="collection-grid fade-in delay-2">
             
-            <div class="project-gallery">
-                
-                <div class="img-box tall">
-                    <img src="A_cinematic_fashion_2k_202601020054.jpeg" alt="דוגמנית צד שמאל">
-                </div>
-                
-                <div class="img-box center-top">
-                    <img src="Image_202601020030.jpeg" alt="תקריב שרשרת">
-                </div>
-
-                <div class="img-box center-bottom">
-                    <img src="A_fashion_editorial_2k_202601020055.jpeg" alt="אווירה">
-                </div>
-                
-                <div class="img-box tall">
-                    <img src="A_highend_fashion_2k_202601020054.jpeg" alt="דוגמנית צד ימין">
+            <div class="collection-card">
+                <div class="card-img-box">
+                    <img src="image_4.png" alt="Olive & Terracotta Necklace" style="object-fit: cover; object-position: left;"> 
+                    </div>
+                <div class="card-content">
+                    <h3 class="card-title">Olive & Terracotta</h3>
+                    <p class="card-desc">A fusion of natural wood and vibrant olive elements.</p>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="contact-section">
-        <h2 style="margin-bottom: 40px; font-weight: 300;">Ready to Create Magic?</h2>
-        <a href="mailto:contact@example.com" class="btn">בואו נדבר</a>
-    </div>
+            <div class="collection-card">
+                <div class="card-img-box">
+                     <img src="image_4.png" alt="Earthy Elegance" style="object-fit: cover; object-position: center;">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Earthy Elegance</h3>
+                    <p class="card-desc">Handcrafted feel with warm Mediterranean tones.</p>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-box">
+                    <img src="image_6.png" alt="Modern Bohemian" style="object-fit: cover; object-position: center top;">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Modern Bohemian</h3>
+                    <p class="card-desc">Effortless style for the contemporary muse.</p>
+                </div>
+            </div>
+
+            <div class="collection-card">
+                <div class="card-img-box">
+                    <img src="image_6.png" alt="Golden Hour Glow" style="object-fit: cover; object-position: right top;">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Golden Hour Glow</h3>
+                    <p class="card-desc">Radiant design that catches the light.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
 
     <footer>
-        © 2026 Magic Creation Portfolio
+        © 2026 <span>Magic Creation</span>. All rights reserved. | Contact
     </footer>
 
 </body>
